@@ -10,7 +10,7 @@ public class MedicalRecord {
     private ArrayList<Appointment> appointments;
 
 
-    public MedicalRecord(String iD, LocalDate expiryDate) {
+    public MedicalRecord(String iD) {
         this.iD = iD;
         this.expiryDate = LocalDate.now().plusYears(1) ;
         appointments = new ArrayList<>();

@@ -14,13 +14,17 @@ public class MainMenu {
     private AuthService authService;
 
 
-    public MainMenu (Scanner scanner) {
+    public MainMenu (Scanner scanner, Hospital hospital, AuthService authService) {
 
         this.scanner = scanner;
-        this.hospital = new Hospital("Bolnica");
-        this.authService = new AuthService(this.hospital);
+        this.hospital = hospital;
+        this.authService = authService;
 
 
+    }
+
+    public void addTestUser(User user) {
+        this.hospital.addUser(user);
     }
 
 
@@ -65,10 +69,8 @@ public class MainMenu {
         System.out.println("2. Password: ");
         String password = scanner.nextLine();
         // TODO make authentication of login
-        Administrator user = new Administrator("Nemanja", "Trifkovic", "trifke", "trifke"); // hardcoded check
-        this.hospital.addUser(user);
-        User loginUser = this.hospital.findUserByUsername(username);
-        if (authService.login(loginUser.getUsername(), loginUser.getPassword())) {
+
+        if (authService.login(username, password)) {
             System.out.println("Uspijesna prijava!");
             System.out.println("Ucitava se meni korisnika....");
             // TODO load contextual Menu
